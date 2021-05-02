@@ -7,6 +7,15 @@ output:
 
 
 ## Loading and preprocessing the data
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+
+Activities <- read.csv("activity.csv")
+Activities$date <- ymd(Activities$date)
+Activities_Per_Day <- group_by(Activities, date)
+Activities_Per_Interval <- group_by(Activities, interval)
 
 
 
