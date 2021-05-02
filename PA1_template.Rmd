@@ -20,6 +20,15 @@ Activities_Per_Interval <- group_by(Activities, interval)
 
 
 ## What is mean total number of steps taken per day?
+items <- tapply(activities$steps, activities$date, FUN=sum)
+barplot(items, las=2, cex.names = 0.5)
+
+
+
+Mean_and_Median <- summarise(activities_per_day, mean=mean(steps, na.rm = TRUE), n=median(steps, na.rm = TRUE))
+plot(Mean_and_Median$Mean, type="l", col="red", ylab = "Steps", xlab = "Day", las=2, main="Average number of steps taken")
+lines(Mean_and_Median$Median, type="l", col="blue")
+legend("topright", legend=c("mean", "median"), pch=1, col=c("red", "blue"))
 
 
 
