@@ -40,6 +40,22 @@ print(Ranking_of_Intervals$Interval[1])
 
 
 ## Imputing missing values
+nas <- is.na(Activities$steps)
+Total_Empty <- sum(nas)
+percentage_empty <- mean(nas)
+# Total empty results
+print(Total_Empty)
+
+
+Not_empty <- mutate(Activities)
+Na_intervals <- Not_empty$Interval[nas]
+Average_na_Intervals <- sapply(na_intervals, function(item) {average_of_steps_by_interval$average[average_of_steps_by_interval$interval==item]})
+Not_empty$steps[nas] = Average_na_intervals
+
+not_empty_items <- tapply(not_empty$steps, Not_empty$date, FUN=sum)
+par(mfrow=c(2,1))
+barplot(items, las=2, cex.names = 0.5, main="Histogram with missing values (NAs)")
+barplot(not_empty_items, las=2, cex.names = 0.5, main="Histogram without missing values (NAs)")
 
 
 
