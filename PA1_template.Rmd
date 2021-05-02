@@ -33,6 +33,9 @@ legend("topright", legend=c("mean", "median"), pch=1, col=c("red", "blue"))
 
 
 ## What is the average daily activity pattern?
+Average_no_of_steps_by_interval <- summarise(Activities_per_Interval, Average=Mean(steps, na.rm = TRUE))
+Ranking_of_Intervals <- arrange(Average_no_of_steps_by_interval, desc(average))
+print(Ranking_of_Intervals$Interval[1])
 
 
 
