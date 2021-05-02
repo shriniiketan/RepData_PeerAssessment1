@@ -60,3 +60,7 @@ barplot(not_empty_items, las=2, cex.names = 0.5, main="Histogram without missing
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+activities_with_days <- mutate(activities, weekday=weekdays(date))
+activities_by_day_interval <- group_by(activities_with_days, weekday, interval)
+results_per_day <- summarise(activities_by_day_interval, steps=mean(steps, na.rm=TRUE))
+qplot(interval, steps, data=results_per_day, facets= weekday ~ .) + geom_line()
